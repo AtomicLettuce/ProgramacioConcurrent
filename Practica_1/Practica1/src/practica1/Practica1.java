@@ -10,12 +10,42 @@ package practica1;
  * @author xvive
  */
 public class Practica1 {
+    static final int N_ESTUDIANTS = 15;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    static private class director extends Thread {
+
+        @Override
+        public void run() {
+            //TODO
+
+        }
+    }
+    
+    
+    static private class estudiant extends Thread {
+
+        @Override
+        public void run() {
+            //TODO
+
+        }
+    }
+    
+    
+    
+    public static void main(String[] args) throws InterruptedException {
+        
+        Thread threads[] = new Thread[N_ESTUDIANTS+1];
+        for (int i = 0; i < N_ESTUDIANTS; i++) {
+            threads[i] = new estudiant();
+            threads[i].start();
+        }
+        threads[N_ESTUDIANTS]=new director();
+        threads[N_ESTUDIANTS].start();
+        for (int i = 0; i < N_ESTUDIANTS; i++) {
+            threads[i].join();
+        }
+        threads[N_ESTUDIANTS].join();
     }
     
 }
