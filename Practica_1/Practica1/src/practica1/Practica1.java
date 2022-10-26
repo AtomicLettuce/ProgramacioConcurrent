@@ -22,7 +22,7 @@ public class Practica1 {
 
     final int N_ESTUDIANTS = 15;
     final int N_RONDES = 3;
-    final int CAPACITAT_SALA=7;
+    final int CAPACITAT_SALA = 7;
     int capacitat = 0;
     Mutex sala = new Mutex();
     Mutex director = new Mutex();
@@ -31,26 +31,28 @@ public class Practica1 {
 
         @Override
         public void run() {
-            System.out.println("\tEl director comencça la ronda");
+            
             for (int i = 0; i < N_RONDES; i++) {
                 try {
+                    System.out.println("\tEl director comença la ronda");
                     sala.acquire();
                     if (capacitat == 0) {
                         System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                         System.out.println("\tEl Director acaba la ronda" + (i + 1) + "de " + N_RONDES);
-                    }else{
+                        sala.release();
+                    } else {
                         System.out.println("\tEl Director està esperant per entrar. No molesta als que estudien");
                         sala.release();
                         director.acquire();
                         sala.acquire();
-                        if(capacitat>CAPACITAT_SALA){
+                        if (capacitat > CAPACITAT_SALA) {
                             System.out.println("\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!");
-                            while(capacitat!=0){
+                            while (capacitat != 0) {
                                 sala.release();
                                 sleep(25);
                                 sala.acquire();
                             }
-                        }else{
+                        } else {
                             System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                         }
                         System.out.println("\tEl Director acaba la ronda" + (i + 1) + "de " + N_RONDES);
@@ -80,6 +82,29 @@ public class Practica1 {
                 sala.acquire();
                 capacitat++;
                 System.out.println(nom + " entra a la sala d'estudi, nombre d'estudiants: " + capacitat);
+                if (capacitat == 1) {
+                    director.acquire();
+                } else if (capacitat == CAPACITAT_SALA) {
+                    System.out.println(nom+": FESTA!!!!!");
+                    /*COM FAIG PER SABER QUE HI HA ES DIRECTOR ESPERANT PER ENTRAR?
+                    
+                    if director esperant{
+                    System.out.println(nom+" ALERTA que vé el director!!!!!!!!!");
+                    }
+                    
+                    */
+                    director.release();
+                }else if (capacitat>CAPACITAT_SALA){
+                    System.out.println(nom+": FESTA!!!!!");
+                }
+                sala.release();
+                
+                //SIMULAR ESTUDI
+                sleep(20);
+                
+                sala.acquire();
+                capacitat--;
+                System.out.println(nom+" surt de la sala d'estudi, nombre estudiants: "+capacitat);
                 sala.release();
             } catch (InterruptedException ex) {
             }
@@ -87,9 +112,7 @@ public class Practica1 {
         }
     }
 
-    public void main() throws InterruptedException {
-        System.out.println(NOMS.length);
-
+    public void main() throws InterruptedException {       
         Thread threads[] = new Thread[N_ESTUDIANTS + 1];
         for (int i = 0; i < N_ESTUDIANTS; i++) {
             threads[i] = new estudiant(NOMS[i]);
