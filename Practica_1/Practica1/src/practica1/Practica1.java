@@ -2,8 +2,6 @@ package practica1;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -89,16 +87,16 @@ public class Practica1 {
             try {
                 sleep(new Random().nextInt(50) + 20);
                 // Si el professor està buidant la sala perquè hi ha hagut FESTA, espera't
-                //sala.acquire();
+                sala.acquire();
                 while (porta_tancada) {
-                    //sala.release();
-                    //Thread.sleep(50);
-                    //sala.acquire();
+                    sala.release();
+                    Thread.sleep(50);
+                    sala.acquire();
                 }
                 /*while (director.availablePermits() == 0 && director.getQueueLength() == 0) {
                 }*/
                 // Entra a la sala
-                sala.acquire();
+                //sala.acquire();
                 if (capacitat == 0) {
                     director.acquire();
                 }
