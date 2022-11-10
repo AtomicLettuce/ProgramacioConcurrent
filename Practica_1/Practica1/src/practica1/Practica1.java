@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package practica1;
 
-import com.sun.corba.se.impl.orbutil.concurrent.Mutex;
+import java.util.Random;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,55 +11,68 @@ import java.util.logging.Logger;
  */
 public class Practica1 {
 
-    final String NOMS[] = {"Joaquim", "Àlex", "Alicia", "Victòria", "Xisca", "Biel", "Xavier", "Elena", "Magdalena", "Marc", "Miquel", "Toni",
+    final String NOMS[] = {"Joaquim", "Goku", "Alicia", "Victòria", "Xisca", "Biel", "Xavier", "Elena", "Magdalena", "Marc", "Miquel", "Toni",
         "Lluís", "Sílvia", "Martí", "Josep", "Damià", "Ester", "Ventura", "Bàrbara", "Aina", "Julià", "Albert", "Eva", "Maria", "Àngels",
         "Tomeu", "Gerard", "Mateu", "Jordi", "Joan", "Carolina", "Bel", "Amadeu", "Emili", "Daniel", "Carles", "Felip", "Laura", "Andreu", "Joel",
         "Pau", "Roderic", "Ernest", "Vicenç", "Abril", "Venus", "Zeus", "Mart", "Morfeu"};
 
-    final int N_ESTUDIANTS = 15;
+    final int N_ESTUDIANTS = 10;
     final int N_RONDES = 3;
-    final int CAPACITAT_SALA = 7;
-    int capacitat = 0;
-    Mutex sala = new Mutex();
-    Mutex director = new Mutex();
+    final int CAPACITAT_SALA = 4;
+    static int capacitat = 0;
+    static Semaphore sala = new Semaphore(1);
+    static Semaphore director = new Semaphore(1);
+    static boolean porta_tancada = false;
 
     private class director extends Thread {
 
         @Override
         public void run() {
-            
-            for (int i = 0; i < N_RONDES; i++) {
-                try {
+            try {
+                for (int i = 0; i < N_RONDES; i++) {
+                    Thread.sleep(new Random().nextInt(50) + 50);
+                    // Començar ronda
                     System.out.println("\tEl director comença la ronda");
+                    // Comprovar capacitat
                     sala.acquire();
+                    // Cas en el que no hi ha nnigú a la sala
                     if (capacitat == 0) {
                         System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
-                        System.out.println("\tEl Director acaba la ronda" + (i + 1) + "de " + N_RONDES);
-                        sala.release();
                     } else {
-                        System.out.println("\tEl Director està esperant per entrar. No molesta als que estudien");
+                        // Cas en el que hi ha una quantitat acceptable d'alumnes a la sala
+                        if (capacitat <= CAPACITAT_SALA) {
+                            System.out.println("\tEl Director està esperant per entrar. No molesta als que estudien");
+                        }
+                        // Espera per poder entrar
                         sala.release();
                         director.acquire();
                         sala.acquire();
-                        if (capacitat > CAPACITAT_SALA) {
+                        // Cas en el que s'ha buidat la sala
+                        if (capacitat == 0) {
+                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
+                        } // Cas en el que hi ha una FESTA
+                        else {
                             System.out.println("\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!");
+                            // Fa que nigú pugui entrar fins que no se buidi
+                            porta_tancada = true;
                             while (capacitat != 0) {
                                 sala.release();
-                                sleep(25);
+                                Thread.sleep(50);
                                 sala.acquire();
                             }
-                        } else {
-                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
+                            porta_tancada = false;
                         }
-                        System.out.println("\tEl Director acaba la ronda" + (i + 1) + "de " + N_RONDES);
                         director.release();
-                        sala.release();
                     }
-                } catch (InterruptedException ex) {
+                    sala.release();
+                    System.out.println("\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES);
+
                 }
 
+            } catch (InterruptedException ex) {
             }
         }
+
     }
 
     private class estudiant extends Thread {
@@ -77,42 +86,57 @@ public class Practica1 {
 
         @Override
         public void run() {
-            // Entren a la sala d'estudi
             try {
+                sleep(new Random().nextInt(50) + 20);
+                // Si el professor està buidant la sala perquè hi ha hagut FESTA, espera't
+                //sala.acquire();
+                while (porta_tancada) {
+                    //sala.release();
+                    //Thread.sleep(50);
+                    //sala.acquire();
+                }
+                /*while (director.availablePermits() == 0 && director.getQueueLength() == 0) {
+                }*/
+                // Entra a la sala
                 sala.acquire();
+                if (capacitat == 0) {
+                    director.acquire();
+                }
                 capacitat++;
                 System.out.println(nom + " entra a la sala d'estudi, nombre d'estudiants: " + capacitat);
-                if (capacitat == 1) {
-                    director.acquire();
-                } else if (capacitat == CAPACITAT_SALA) {
-                    System.out.println(nom+": FESTA!!!!!");
-                    /*COM FAIG PER SABER QUE HI HA ES DIRECTOR ESPERANT PER ENTRAR?
-                    
-                    if director esperant{
-                    System.out.println(nom+" ALERTA que vé el director!!!!!!!!!");
+                // Entra i hi ha festa
+                if (capacitat > CAPACITAT_SALA) {
+                    System.out.println(nom + ": FESTA!!!!!");
+                    // Cas en el que monta la festa i el director estava esperant
+                    if (director.hasQueuedThreads()) {
+                        System.out.println(nom + " ALERTA que vé el director!!!!!!!!!");
                     }
-                    
-                    */
+                    // Dona permís perquè pugui entrar el director
                     director.release();
-                }else if (capacitat>CAPACITAT_SALA){
-                    System.out.println(nom+": FESTA!!!!!");
+
                 }
                 sala.release();
-                
-                //SIMULAR ESTUDI
-                sleep(20);
-                
+                // Simular estudi
+                Thread.sleep(new Random().nextInt(100) + 200);
+                // Sortir de la sala
                 sala.acquire();
                 capacitat--;
-                System.out.println(nom+" surt de la sala d'estudi, nombre estudiants: "+capacitat);
+                System.out.println(nom + " surt de la sala d'estudi, nombre estudiants: " + capacitat);
+                if (capacitat == 0) {
+                    if (director.hasQueuedThreads()) {
+                        System.out.println(nom + " ADÉU Senyor Director, pot entrar si vol, no hi ha nigú");
+                    }
+                    director.release();
+                }
                 sala.release();
+
             } catch (InterruptedException ex) {
             }
-
         }
+
     }
 
-    public void main() throws InterruptedException {       
+    public void main() throws InterruptedException {
         Thread threads[] = new Thread[N_ESTUDIANTS + 1];
         for (int i = 0; i < N_ESTUDIANTS; i++) {
             threads[i] = new estudiant(NOMS[i]);
