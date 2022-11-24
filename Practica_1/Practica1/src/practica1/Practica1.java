@@ -20,7 +20,7 @@ public class Practica1 {
     static int capacitat = 0;
     static Semaphore sala = new Semaphore(1);
     static Semaphore director = new Semaphore(1);
-    static boolean porta_tancada = false;
+    static Semaphore director_dedins=new Semaphore(1);
 
     private class director extends Thread {
 
@@ -52,15 +52,14 @@ public class Practica1 {
                         else {
                             System.out.println("\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!");
                             // Fa que nigú pugui entrar fins que no se buidi
-                            porta_tancada = true;
+                            director_dedins.acquire();
                             while (capacitat != 0) {
                                 sala.release();
                                 Thread.sleep(50);
                                 sala.acquire();
                             }
-                            porta_tancada = false;
+                            director_dedins.release();
                         }
-                        director.release();
                     }
                     sala.release();
                     System.out.println("\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES);
@@ -87,16 +86,10 @@ public class Practica1 {
             try {
                 sleep(new Random().nextInt(50) + 20);
                 // Si el professor està buidant la sala perquè hi ha hagut FESTA, espera't
+                director_dedins.acquire();
+                director_dedins.release();
                 sala.acquire();
-                while (porta_tancada) {
-                    sala.release();
-                    Thread.sleep(50);
-                    sala.acquire();
-                }
-                /*while (director.availablePermits() == 0 && director.getQueueLength() == 0) {
-                }*/
                 // Entra a la sala
-                //sala.acquire();
                 if (capacitat == 0) {
                     director.acquire();
                 }
