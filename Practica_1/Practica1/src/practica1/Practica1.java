@@ -14,13 +14,30 @@ public class Practica1 {
         "Tomeu", "Gerard", "Mateu", "Jordi", "Joan", "Carolina", "Bel", "Amadeu", "Emili", "Daniel", "Carles", "Felip", "Laura", "Andreu", "Joel",
         "Pau", "Roderic", "Ernest", "Vicenç", "Abril", "Venus", "Zeus", "Mart", "Morfeu"};
 
-    final int N_ESTUDIANTS = 10;
+    final int N_ESTUDIANTS = 15;
     final int N_RONDES = 3;
-    final int CAPACITAT_SALA = 4;
+    final int CAPACITAT_SALA = 5;
     static int capacitat = 0;
     static Semaphore sala = new Semaphore(1);
     static Semaphore director = new Semaphore(1);
-    static Semaphore director_dedins=new Semaphore(1);
+    static Semaphore director_dedins = new Semaphore(1);
+
+    static enum Estat {
+        NO_HI_ES, ESPERANT, DEDINS
+    };
+
+    Estat estat_director = Estat.NO_HI_ES;
+
+    public static final String ANSI_COLOR_RED = "\033[1;31m";
+    public static final String ANSI_COLOR_CYAN = "\033[1;36m";
+    public static final String ANSI_COLOR_GREEN = "\033[1;32m";
+    public static final String ANSI_COLOR_YELLOW = "\033[1;33m";
+    public static final String ANSI_COLOR_BLUE = "\033[1;34m";
+    public static final String ANSI_COLOR_PURPLE = "\033[1;35m";
+    public static final String ANSI_COLOR_WHITE = "\033[1;37m";
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String RANIBOW_FESTA = ANSI_COLOR_RED + "F" + ANSI_COLOR_GREEN + "E" + ANSI_COLOR_YELLOW + "S" + ANSI_COLOR_BLUE + "T" + ANSI_COLOR_PURPLE + "A" + ANSI_COLOR_CYAN + "!" + ANSI_COLOR_WHITE + "!" + ANSI_COLOR_RED + "!" + ANSI_COLOR_GREEN + "!" + ANSI_COLOR_YELLOW + "!" + ANSI_RESET;
 
     private class director extends Thread {
 
@@ -33,9 +50,11 @@ public class Practica1 {
                     System.out.println("\tEl director comença la ronda");
                     // Comprovar capacitat
                     sala.acquire();
+                    estat_director = Estat.ESPERANT;
                     // Cas en el que no hi ha nnigú a la sala
                     if (capacitat == 0) {
-                        System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
+                        estat_director = Estat.DEDINS;
+                        System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
                     } else {
                         // Cas en el que hi ha una quantitat acceptable d'alumnes a la sala
                         if (capacitat <= CAPACITAT_SALA) {
@@ -47,22 +66,27 @@ public class Practica1 {
                         sala.acquire();
                         // Cas en el que s'ha buidat la sala
                         if (capacitat == 0) {
-                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
+                            estat_director = Estat.DEDINS;
+                            System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
                         } // Cas en el que hi ha una FESTA
                         else {
-                            System.out.println("\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!");
+                            estat_director = Estat.DEDINS;
+                            System.out.println(ANSI_COLOR_RED + "\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!" + ANSI_RESET);
                             // Fa que nigú pugui entrar fins que no se buidi
                             director_dedins.acquire();
-                            while (capacitat != 0) {
-                                sala.release();
-                                Thread.sleep(50);
-                                sala.acquire();
-                            }
+                            sala.release();
+                            // Espera fins que se buidi
+                            director.acquire();
+                            System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                            director.release();
+                            sala.acquire();
+                            estat_director = Estat.NO_HI_ES;
+                            sala.release();
                             director_dedins.release();
                         }
                     }
                     sala.release();
-                    System.out.println("\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES);
+                    System.out.println(ANSI_COLOR_CYAN + "\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES + ANSI_RESET);
 
                 }
 
@@ -84,7 +108,7 @@ public class Practica1 {
         @Override
         public void run() {
             try {
-                sleep(new Random().nextInt(50) + 20);
+                sleep(new Random().nextInt(50) + 100);
                 // Si el professor està buidant la sala perquè hi ha hagut FESTA, espera't
                 director_dedins.acquire();
                 director_dedins.release();
@@ -95,16 +119,17 @@ public class Practica1 {
                 }
                 capacitat++;
                 System.out.println(nom + " entra a la sala d'estudi, nombre d'estudiants: " + capacitat);
-                // Entra i hi ha festa
-                if (capacitat > CAPACITAT_SALA) {
-                    System.out.println(nom + ": FESTA!!!!!");
+                if (capacitat >= CAPACITAT_SALA) {
+                    System.out.println(nom + ": " + RANIBOW_FESTA);
+                }
+                // Cas en el que monta la festa
+                if (capacitat == CAPACITAT_SALA) {
                     // Cas en el que monta la festa i el director estava esperant
-                    if (director.hasQueuedThreads()) {
+                    if (estat_director.equals(Estat.ESPERANT)) {
                         System.out.println(nom + " ALERTA que vé el director!!!!!!!!!");
                     }
                     // Dona permís perquè pugui entrar el director
                     director.release();
-
                 }
                 sala.release();
                 // Simular estudi
@@ -114,7 +139,8 @@ public class Practica1 {
                 capacitat--;
                 System.out.println(nom + " surt de la sala d'estudi, nombre estudiants: " + capacitat);
                 if (capacitat == 0) {
-                    if (director.hasQueuedThreads()) {
+                    // Si estat_director == DEDINS o estat_director == ESPERANT
+                    if (!estat_director.equals(Estat.NO_HI_ES)) {
                         System.out.println(nom + " ADÉU Senyor Director, pot entrar si vol, no hi ha nigú");
                     }
                     director.release();
