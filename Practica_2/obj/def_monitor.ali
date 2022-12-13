@@ -1,0 +1,176 @@
+V "GNAT Lib v2020"
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV SIMPLE_BARRIERS
+RV PURE_BARRIERS
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_PROTECTED_TYPES
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV MAX_PROTECTED_ENTRIES=3
+
+U def_monitor%b		def_monitor.adb		1f3d83b4 NE OO PK IL
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.strings.unbounded.text_io%s  a-suteio.adb	a-suteio.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+Z interfaces%s		interfac.ads		interfac.ali
+Z system%s		system.ads		system.ali
+Z system.concat_5%s	s-conca5.adb		s-conca5.ali
+Z system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+Z system.img_int%s	s-imgint.adb		s-imgint.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
+Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
+W text_io%s		text_io.ads		text_io.ali
+
+U def_monitor%s		def_monitor.ads		f4617ea8 EE NE OO PK IL
+W ada%s			ada.ads			ada.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+Z system%s		system.ads		system.ali
+Z system.tasking%s	s-taskin.adb		s-taskin.ali
+Z system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
+
+D ada.ads		20200228061810 76789da1 ada%s
+D a-charac.ads		20200228061810 2d3ec45b ada.characters%s
+D a-chlat1.ads		20200228061810 66457d31 ada.characters.latin_1%s
+D a-except.ads		20200228061810 a7106115 ada.exceptions%s
+D a-finali.ads		20200228061810 bf4f806b ada.finalization%s
+D a-ioexce.ads		20200228061810 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20200228061810 119b8fb3 ada.streams%s
+D a-string.ads		20200228061810 90ac6797 ada.strings%s
+D a-strmap.ads		20200228061810 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20200304060544 1656705b ada.strings.unbounded%s
+D a-suteio.ads		20200228061810 26d8e9aa ada.strings.unbounded.text_io%s
+D a-tags.ads		20200228061810 edddc8f0 ada.tags%s
+D a-textio.ads		20200228061810 aef4d56d ada.text_io%s
+D a-unccon.ads		20200228061810 0e9b276f ada.unchecked_conversion%s
+D def_monitor.ads	20221212200748 e2370ef3 def_monitor%s
+D def_monitor.adb	20221212200748 ec36dc2e def_monitor%b
+D interfac.ads		20200228061810 5ab55268 interfaces%s
+D i-c.ads		20200228061810 c624fa43 interfaces.c%s
+D i-cstrin.ads		20200228061810 341d0ddf interfaces.c.strings%s
+D i-cstrea.ads		20200228061810 e53d8b8e interfaces.c_streams%s
+D system.ads		20200228061810 32a08138 system%s
+D s-atacco.ads		20200228061810 4c36d12f system.address_to_access_conversions%s
+D s-atocou.ads		20200228061810 b45c2d8d system.atomic_counters%s
+D s-conca5.ads		20200228061810 875e432e system.concat_5%s
+D s-crtl.ads		20200228061810 0ebbdb71 system.crtl%s
+D s-exctab.ads		20200228061810 54135002 system.exception_table%s
+D s-ficobl.ads		20200228061810 078245e4 system.file_control_block%s
+D s-finmas.ads		20200228061810 7811a767 system.finalization_masters%s
+D s-finroo.ads		20200228061810 4ff27390 system.finalization_root%s
+D s-imenne.ads		20200228061810 614c06c0 system.img_enum_new%s
+D s-imgint.ads		20200228061810 02dbe0c2 system.img_int%s
+D s-multip.ads		20200228061810 38ac9f73 system.multiprocessors%s
+D s-osinte.ads		20200228061810 97504df8 system.os_interface%s
+D s-parame.ads		20200228061810 4752c4cb system.parameters%s
+D s-secsta.ads		20200327060540 9b3ab94b system.secondary_stack%s
+D s-soflin.ads		20200228061810 a7318a92 system.soft_links%s
+D s-stache.ads		20200228061810 a37c21ec system.stack_checking%s
+D s-stausa.ads		20200228061810 017a0a05 system.stack_usage%s
+D s-stalib.ads		20200228061810 6b7a13f2 system.standard_library%s
+D s-stoele.ads		20200228061810 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20200313060448 e9fa2dd8 system.storage_pools%s
+D s-stposu.ads		20200317060516 e251976f system.storage_pools.subpools%s
+D s-stratt.ads		20200424050626 9a2744e9 system.stream_attributes%s
+D s-tasinf.ads		20200228061810 601f6b72 system.task_info%s
+D s-taspri.ads		20200228061810 6c1d93d4 system.task_primitives%s
+D s-taskin.ads		20200228061810 88fba9ad system.tasking%s
+D s-taprob.ads		20200228061810 acd6094d system.tasking.protected_objects%s
+D s-tpoben.ads		20200228061810 60ad3dae system.tasking.protected_objects.entries%s
+D s-tpobop.ads		20200228061810 5f548bb3 system.tasking.protected_objects.operations%s
+D s-traent.ads		20200228061810 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20200319060540 5ecf7212 system.unsigned_types%s
+D s-wchcon.ads		20200228061810 1b7d22d2 system.wch_con%s
+D s-win32.ads		20200228061810 15ac53fb system.win32%s
+D text_io.ads		20200228061810 21b2c898 text_io%s
+G a e
+G c Z s b [inicializar_maitre def_monitor__maitre 18 17 none]
+G c Z s b [entrar_salo def_monitor__maitre 20 13 none]
+G c Z s b [sortir_salo def_monitor__maitre 22 17 none]
+G c Z s b [hi_ha_lloc def_monitor__maitre 24 16 none]
+G c Z s b [maitre__inicializar_maitreN def_monitor 18 7 none]
+G c Z s b [maitre__inicializar_maitreP def_monitor 18 7 none]
+G c Z s b [maitre__sortir_saloN def_monitor 22 7 none]
+G c Z s b [maitre__sortir_saloP def_monitor 22 7 none]
+G c Z s b [maitre__hi_ha_llocN def_monitor 24 7 none]
+G c Z s b [maitre__hi_ha_llocP def_monitor 24 7 none]
+G c Z s s [Tarray_salonsBIP def_monitor 11 5 none]
+G c Z s s [Tarray_tipusBIP def_monitor 13 5 none]
+G c Z s s [F9sIP def_monitor 16 4 none]
+G c Z s s [maitreVDI def_monitor 16 4 none]
+G c Z s s [maitreVDF def_monitor 16 4 none]
+G c Z s s [maitreVIP def_monitor 16 4 none]
+G c Z s s [P7sIP def_monitor 20 7 none]
+X 1 ada.ads
+16K9*Ada 20e8 15|2r6 2r44 16|2r6 2r44 3r6 3r44
+X 8 a-string.ads
+16K13*Strings 35e16 15|2r10 2r48 16|2r10 2r48 3r10 3r48
+X 10 a-strunb.ads
+82K21*Unbounded 758e26 15|2w18 2r56 16|2w18 2r56 3r18 3r56
+87R9*Unbounded_String<5|43R9> 741e14 15|20r45 22r37 16|54r65 80r38
+159V14*"&"{87R9} 16|69s46 69s81 69s92 69s112 71s46 71s84 71s95 71s114 97s46
+. 97s78 97s89 97s109 97s134 97s146 99s46 99s78 99s89 99s109 99s134 99s146
+167V14*"&"{87R9} 16|69s40 71s40 97s40 99s40
+X 11 a-suteio.ads
+39K31*Text_IO 61e34 16|3w28 3r66
+55U14*Put_Line 16|69s14 71s14 97s14 99s14
+X 13 a-textio.ads
+508U14*Put_Line 16|22s10 24s10
+X 15 def_monitor.ads
+4K9*def_monitor 34l5 34e16 16|6b14 107l5 107t16
+6i5*N_TAULES{natural} 16|16r30 24r85 60r32 90r35
+7i5*N_SALONS{natural} 11r36 13r35 16|24r41
+9E10*Tipus_Salo 9e48 13r48 20r25 24r44 16|30r44 54r45 82r24
+9n25*FUMADOR{9E10} 16|68r29 96r28
+9n33*NO_FUMADOR{9E10}
+9n44*CAP{9E10} 16|18r29 36r62 92r33
+11A10*Array_Salons(natural)<integer> 28r22
+13A10*Array_Tipus(9E10)<integer> 30r21
+16W19*Maitre 28E7 32l8 32e14 16|8b19 105l8 105t14
+18U17 Inicializar_Maitre 16|10b17 26l11 26t29
+20Y13 Entrar_Salo 20>37 20<63 16|54b13 75l11 75t22
+20r37 Nom{10|87R9} 16|69r42 71r42
+20i63 Salo{natural} 16|58m10 60r26 62r25 66r23 66r44 69r83 69r127 71r86 71r129
+22U17 Sortir_Salo 22>29 22>55 16|80b17 102l11 102t22
+22r29 Nom{10|87R9} 16|80b30 97r42 99r42
+22i55 Salo{natural} 16|80b56 86r37 88r23 88r45 90r27 92r25 97r80 97r124 97r161
+. 99r80 99r124 99r161
+24V16 Hi_Ha_LLoc{natural} 24>27 16|30b16 50l11 50t21 54s109 58s17
+24e27 Tipus_Client{9E10} 16|30b27 36r31
+28a7 Salons_Array{11A10} 16|14r19 16r13 34r20 38r19 60r13 66r10 66r31 69r114
+. 71r116 88r10 88r32 90r14 97r111 99r111
+30a7 Tipus_Array{13A10} 16|18r13 36r16 36r47 62r13 86r25 92r13 97r149 99r149
+X 16 def_monitor.adb
+14i14 i{integer} 16r26 18r25
+34i15 i{integer} 36r28 36r59 38r32 40r26
+54e29 Tipus_Client
+54r57 Nom{10|87R9}
+54i83 Salo{natural}
+82e10 Tipus_Client{15|9E10} 86m10 96r13
+X 38 s-stausa.ads
+208U14*Initialize 209i<c,__gnat_stack_usage_initialize>22
+273U14*Output_Results 277i<c,__gnat_stack_usage_output_results>22
+X 54 text_io.ads
+24K9*Text_IO=24:29 16|1w6 1r45
+
