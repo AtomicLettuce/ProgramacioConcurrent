@@ -80,11 +80,10 @@ public class Practica1 {
                             System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
                             director.release();
                             sala.acquire();
-                            estat_director = Estat.NO_HI_ES;
-                            sala.release();
                             director_dedins.release();
                         }
                     }
+                    estat_director=Estat.NO_HI_ES;
                     sala.release();
                     System.out.println(ANSI_COLOR_CYAN + "\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES + ANSI_RESET);
 
@@ -140,8 +139,10 @@ public class Practica1 {
                 System.out.println(nom + " surt de la sala d'estudi, nombre estudiants: " + capacitat);
                 if (capacitat == 0) {
                     // Si estat_director == DEDINS o estat_director == ESPERANT
-                    if (!estat_director.equals(Estat.NO_HI_ES)) {
+                    if (estat_director.equals(Estat.DEDINS)) {
                         System.out.println(nom + " ADÉU Senyor Director, pot entrar si vol, no hi ha nigú");
+                    }else if(estat_director.equals(Estat.ESPERANT)){
+                        System.out.println(nom+"ADÉU Senyor Director, pot entrar si vol, no hi ha nigú");
                     }
                     director.release();
                 }
