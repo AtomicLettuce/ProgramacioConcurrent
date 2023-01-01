@@ -23,18 +23,23 @@ public class Practica1 {
     final int N_RONDES = 3;
     final int CAPACITAT_SALA = 5;
     
+    // Variable comptador que guarda la quantitat de persones que hi ha a la sala
     static int capacitat = 0;
     
+    // Semàfor que regula l'accés a la sala
     static Semaphore sala = new Semaphore(1);
+    // Semàfor que regula l'accés DEL DIRECTOR a la sala
     static Semaphore director = new Semaphore(1);
+    // Semàfor que serveix per fer que els alumnes esperin mentre el director està desmontant una festa
     static Semaphore director_dedins = new Semaphore(1);
 
     static enum Estat {
         NO_HI_ES, ESPERANT, DEDINS
     };
-
+    // Estat del director
     Estat estat_director = Estat.NO_HI_ES;
 
+    // Constants per donar color al text
     public static final String ANSI_COLOR_RED = "\033[1;31m";
     public static final String ANSI_COLOR_CYAN = "\033[1;36m";
     public static final String ANSI_COLOR_GREEN = "\033[1;32m";
@@ -42,12 +47,14 @@ public class Practica1 {
     public static final String ANSI_COLOR_BLUE = "\033[1;34m";
     public static final String ANSI_COLOR_PURPLE = "\033[1;35m";
     public static final String ANSI_COLOR_WHITE = "\033[1;37m";
-
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String RANIBOW_FESTA = ANSI_COLOR_RED + "F" + ANSI_COLOR_GREEN + "E" + ANSI_COLOR_YELLOW + "S" + ANSI_COLOR_BLUE + "T" + ANSI_COLOR_PURPLE + "A" + ANSI_COLOR_CYAN + "!" + ANSI_COLOR_WHITE + "!" + ANSI_COLOR_RED + "!" + ANSI_COLOR_GREEN + "!" + ANSI_COLOR_YELLOW + "!" + ANSI_RESET;
 
+    
+    
+    
+    
     private class director extends Thread {
-
         @Override
         public void run() {
             try {
@@ -111,7 +118,6 @@ public class Practica1 {
             this.nom = nom;
 
         }
-
         @Override
         public void run() {
             try {
@@ -164,10 +170,12 @@ public class Practica1 {
 
     public void main() throws InterruptedException {
         Thread threads[] = new Thread[N_ESTUDIANTS + 1];
+        // Cream fils estudiants
         for (int i = 0; i < N_ESTUDIANTS; i++) {
             threads[i] = new estudiant(NOMS[i]);
             threads[i].start();
         }
+        // Cream fil director
         threads[N_ESTUDIANTS] = new director();
         threads[N_ESTUDIANTS].start();
         for (int i = 0; i < N_ESTUDIANTS; i++) {

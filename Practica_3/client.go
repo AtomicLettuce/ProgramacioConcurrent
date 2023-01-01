@@ -51,7 +51,7 @@ func main() {
 	quantitat, err := ch2.Consume("quantitat", "", false, false, false, false, nil)
 	failOnError(err, "Failed to declare a queue")
 
-	// Menjar tantes pece com ha decidit
+	// Menjar tantes peces com ha decidit
 	for i := 0; i < peces_a_menjar; i++ {
 		time.Sleep(time.Duration(rand.Intn(1000)) * time.Millisecond)
 		// Espera permís

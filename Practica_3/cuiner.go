@@ -51,7 +51,6 @@ func main() {
 
 	// Decideix quantes peces cuinarà
 	total_peces := 10
-
 	peces_niguiri := 0
 	peces_sashimi := 0
 	peces_maki := 0
@@ -59,6 +58,7 @@ func main() {
 	peces_sashimi = rand.Intn(total_peces - peces_niguiri)
 	peces_maki = total_peces - peces_niguiri - peces_sashimi
 
+	// Anuncia les peces que cuniarà
 	log.Printf("El cuiner prepararà un plat amb:")
 	log.Printf("%d peces de niguiri de salmó", peces_niguiri)
 	log.Printf("%d peces de sahimi de tonyina", peces_sashimi)
