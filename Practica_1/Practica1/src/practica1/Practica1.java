@@ -1,12 +1,17 @@
+/*
+Autors : 
+        Marc Melià Flexas
+        Xavier Vives Marcus
+
+Vídeo:
+        https://www.youtube.com/watch?v=wPlCwHHk-AA&ab_channel=XavierVives
+*/
+
 package practica1;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
-/**
- *
- * @author xvive
- */
 public class Practica1 {
 
     final String NOMS[] = {"Joaquim", "Goku", "Alicia", "Victòria", "Xisca", "Biel", "Xavier", "Elena", "Magdalena", "Marc", "Miquel", "Toni",
@@ -17,7 +22,9 @@ public class Practica1 {
     final int N_ESTUDIANTS = 15;
     final int N_RONDES = 3;
     final int CAPACITAT_SALA = 5;
+    
     static int capacitat = 0;
+    
     static Semaphore sala = new Semaphore(1);
     static Semaphore director = new Semaphore(1);
     static Semaphore director_dedins = new Semaphore(1);
@@ -54,10 +61,11 @@ public class Practica1 {
                     // Cas en el que no hi ha nnigú a la sala
                     if (capacitat == 0) {
                         estat_director = Estat.DEDINS;
-                        System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                        System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                     } else {
                         // Cas en el que hi ha una quantitat acceptable d'alumnes a la sala
                         if (capacitat <= CAPACITAT_SALA) {
+                            estat_director=Estat.ESPERANT;
                             System.out.println("\tEl Director està esperant per entrar. No molesta als que estudien");
                         }
                         // Espera per poder entrar
@@ -67,17 +75,17 @@ public class Practica1 {
                         // Cas en el que s'ha buidat la sala
                         if (capacitat == 0) {
                             estat_director = Estat.DEDINS;
-                            System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                         } // Cas en el que hi ha una FESTA
                         else {
                             estat_director = Estat.DEDINS;
-                            System.out.println(ANSI_COLOR_RED + "\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!" + ANSI_RESET);
+                            System.out.println("\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!");
                             // Fa que nigú pugui entrar fins que no se buidi
                             director_dedins.acquire();
                             sala.release();
                             // Espera fins que se buidi
                             director.acquire();
-                            System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                             director.release();
                             sala.acquire();
                             director_dedins.release();
@@ -85,7 +93,7 @@ public class Practica1 {
                     }
                     estat_director=Estat.NO_HI_ES;
                     sala.release();
-                    System.out.println(ANSI_COLOR_CYAN + "\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES + ANSI_RESET);
+                    System.out.println("\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES);
 
                 }
 
