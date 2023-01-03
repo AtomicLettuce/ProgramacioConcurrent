@@ -1,18 +1,18 @@
 [GENERATED OBJECT FILE]
 b__main.o
 [PROJECT FILES]
-C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\practica2.gpr
-20221130164534 989bfa62a5997fa65fe7b283f6abe267
+C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr
+20221130164534 6e5c3470e7e310c84c09c682d0d9e5e3
 [BOUND OBJECT FILES]
-C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\def_monitor.o
-C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\main.o
+C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\def_monitor.o
+C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\main.o
 [GENERATED SOURCE FILES]
 b__main.ads
 b__main.adb
 b__main.ali
 [RESULTING OPTIONS]
--LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\
--LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\
+-LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\
+-LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\
 -LC:/gnat/2020/lib/gcc/x86_64-pc-mingw32/9.3.1/adalib/
 -static
 -static-libgcc

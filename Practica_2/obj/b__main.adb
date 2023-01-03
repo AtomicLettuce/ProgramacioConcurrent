@@ -350,10 +350,10 @@ package body ada_main is
    end;
 
 --  BEGIN Object file/option list
-   --   C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\def_monitor.o
-   --   C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\main.o
-   --   -LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\
-   --   -LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\practica22\obj\
+   --   C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\def_monitor.o
+   --   C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\main.o
+   --   -LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\
+   --   -LC:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\obj\
    --   -LC:/gnat/2020/lib/gcc/x86_64-pc-mingw32/9.3.1/adalib/
    --   -static
    --   -lgnarl

@@ -29,7 +29,7 @@ RV MAX_TASK_ENTRIES=1
 RV MAX_TASKS=1+
 RV MAX_ENTRY_QUEUE_LENGTH=1+
 
-U main%b		main.adb		a7fe9720 NE OO SU
+U main%b		main.adb		cdfd4f8a NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
@@ -74,12 +74,12 @@ D a-suteio.ads		20200228061810 26d8e9aa ada.strings.unbounded.text_io%s
 D a-tags.ads		20200228061810 edddc8f0 ada.tags%s
 D a-textio.ads		20200228061810 aef4d56d ada.text_io%s
 D a-unccon.ads		20200228061810 0e9b276f ada.unchecked_conversion%s
-D def_monitor.ads	20221212200748 e2370ef3 def_monitor%s
+D def_monitor.ads	20230102202010 3ddb67b7 def_monitor%s
 D interfac.ads		20200228061810 5ab55268 interfaces%s
 D i-c.ads		20200228061810 c624fa43 interfaces.c%s
 D i-cstrin.ads		20200228061810 341d0ddf interfaces.c.strings%s
 D i-cstrea.ads		20200228061810 e53d8b8e interfaces.c_streams%s
-D main.adb		20221213104346 14a363c0 main%b
+D main.adb		20230102202010 a14cd22e main%b
 D system.ads		20200228061810 32a08138 system%s
 D s-atacco.ads		20200228061810 4c36d12f system.address_to_access_conversions%s
 D s-atocou.ads		20200228061810 b45c2d8d system.atomic_counters%s
@@ -119,76 +119,80 @@ D s-wchcon.ads		20200228061810 1b7d22d2 system.wch_con%s
 D s-win32.ads		20200228061810 15ac53fb system.win32%s
 D text_io.ads		20200228061810 21b2c898 text_io%s
 G a e
-G c Z b b [main standard 8 11 none]
-G r s maitre [main standard 8 11 none] [maitreVIP def_monitor 16 4 none]
-G r l maitre [main standard 8 11 none] [maitreVDI def_monitor 16 4 none]
-G r k maitre [main standard 8 11 none] [maitreVDF def_monitor 16 4 none]
-G r o none [main standard 8 11 none] [entrar_salo def_monitor__maitre 20 13 none]
-G r p none [main standard 8 11 none] [sortir_salo def_monitor__maitre 22 17 none]
-G r p none [main standard 8 11 none] [inicializar_maitre def_monitor__maitre 18 17 none]
+G c Z b b [main standard 15 11 none]
+G r s maitre [main standard 15 11 none] [maitreVIP def_monitor 23 4 none]
+G r l maitre [main standard 15 11 none] [maitreVDI def_monitor 23 4 none]
+G r k maitre [main standard 15 11 none] [maitreVDF def_monitor 23 4 none]
+G r o none [main standard 15 11 none] [entrar_salo def_monitor__maitre 27 13 none]
+G r p none [main standard 15 11 none] [sortir_salo def_monitor__maitre 29 17 none]
+G r p none [main standard 15 11 none] [inicializar_maitre def_monitor__maitre 25 17 none]
 X 1 ada.ads
 16K9*Ada 20e8 25|3r6 3r42 4r6 4r42 5r6 5r42
 X 9 a-numeri.ads
 16K13*Numerics 32e17 25|3r10 3r46
 X 10 a-nuflra.ads
 41K22*Float_Random 74e30 25|3w19 3r55
-47R9*Generator<39|63R9> 25|31r18
+47R9*Generator<39|63R9> 25|41r18
 49F12*Uniformly_Distributed{float}
-51V13*Random{49F12}<39|71p13> 25|53s26 131s23
-53U14*Reset<39|100p14> 25|115s4
+51V13*Random{49F12}<39|71p13> 25|68s26 100s23
+53U14*Reset<39|100p14> 25|138s4
 X 13 a-string.ads
 16K13*Strings 35e16 25|4r10 4r46 5r10 5r46
 X 15 a-strunb.ads
 82K21*Unbounded 758e26 25|4w18 4r54 5r18 5r54
-87R9*Unbounded_String<7|43R9> 741e14 25|22r46 38r34 45r14 76r37
-103V13*To_Unbounded_String{87R9} 25|122s18
-159V14*"&"{87R9} 25|56s33 56s80 58s38 58s85 66s33 68s38 86s43 88s48 98s34
-. 100s39
-167V14*"&"{87R9} 25|56s27 58s32 66s27 68s32 86s37 88s42 98s28 100s33
+87R9*Unbounded_String<7|43R9> 741e14 25|34r46 51r34 58r14 91r37
+103V13*To_Unbounded_String{87R9} 25|147s18
+159V14*"&"{87R9} 25|71s33 71s80 73s38 73s85 81s33 83s38 105s43 107s48 118s34
+. 120s39
+167V14*"&"{87R9} 25|71s27 73s32 81s27 83s32 105s37 107s42 118s28 120s33
 X 16 a-suteio.ads
 39K31*Text_IO 61e34 25|5w28 5r64
-55U14*Put_Line 25|56s13 58s13 66s13 68s13 86s10 88s10 98s13 100s13
+55U14*Put_Line 25|71s13 73s13 81s13 83s13 105s10 107s10 118s13 120s13
 X 18 a-textio.ads
-64P9*File_Type 25|16r15
-66n23*In_File{66E9} 25|119r17
-114U14*Open 25|119s4
-129U14*Close 25|125s4
-492V13*Get_Line{string} 25|122s38
+64P9*File_Type 25|30r15
+66n23*In_File{66E9} 25|144r17
+114U14*Open 25|144s4
+129U14*Close 25|150s4
+492V13*Get_Line{string} 25|147s38
 X 20 def_monitor.ads
-4K9*def_monitor 34e16 25|2w6 2r42
-9E10*Tipus_Salo 9e48 25|26r19 38r70 46r14 76r73
-9n25*FUMADOR{9E10} 25|55r21 65r21 85r17 97r17 135r25
-9n33*NO_FUMADOR{9E10} 25|139r25
-16W19*Maitre 32e14 25|19r14
-18U17 Inicializar_Maitre 25|117s12
-20Y13 Entrar_Salo 25|92r15
-22U17 Sortir_Salo 25|94s15
+4K9*def_monitor 41e16 25|2w6 2r42
+14E10*Tipus_Salo 14e49 25|51r70 59r14 91r73
+14n25*FUMADOR{14E10} 25|70r21 80r21 104r17 117r17 155r43
+14n33*NO_FUMADOR{14E10} 25|162r56
+23W19*Maitre 39e14 25|47r14
+25U17 Inicializar_Maitre 25|141s12
+27Y13 Entrar_Salo 25|112r15
+29U17 Sortir_Salo 25|114s15
 X 25 main.adb
-8U11*Main 8b11 149l5 149t9
-11i4 THREADS{integer} 22r34 107r36 121r16 129r18
-14a4 Fitxer_Personatges{string} 119r26
-16p4 Fitxer{18|64P9} 119m9 119r9 122r47 125m10 125r10
-19w4 Monitor{20|16W19} 92r7 94r7 117r4
-22A9 Noms_Clients(15|87R9)<integer> 23r11
-23a4 Noms{22A9} 122m7 143r32
-26e4 Tipus_Client{20|9E10} 135m10 139m10 143r43
-31r4 Generador{10|47R9} 53r33 115r10 131r30
-33f4 Float_Random{float} 53m10 62r25 131m7 133r11 145r22
-37T14 Client 39l8 39e14 42b14 103l8 103t14 107r48
-38Y11 Start 38>18 38>52 76b14 82l11 82t16 143s26
-38r18 Nom_Client{15|87R9} 79r19
-38e52 Tipus_Client{20|9E10} 80r19
-45r7 Nom{15|87R9} 56r29 58r34 66r29 68r34 79m10 86r39 88r44 92r34 94r27 98r30
-. 100r35
-46e7 Tipus{20|9E10} 55r13 65r13 80m10 85r10 92r27 97r10
-47i7 Salo{natural} 56r82 58r87 92m38 94r31
-49U17 Dinar 49b17 71l11 71t16 93s7
-76r21 Nom_Client{15|87R9}
-76e55 Tipus_Client{20|9E10}
-107A9 Array_Clients(37T14)<integer> 109r20
-109a4 Clients_Array{107A9} 143r7
-121i8 I{integer} 122r12
-129i8 Idx{integer} 143r21 143r37
+15U11*Main 15b11 167l5 167t9
+18i4 FUMADORS{integer} 24r34 126r37 153r18 162r45
+21i4 NO_FUMADORS{integer} 24r43 128r40 160r18
+24i4 THREADS{integer} 34r34 146r16
+28a4 Fitxer_Personatges{string} 144r26
+30p4 Fitxer{18|64P9} 144m9 144r9 147r47 150m10 150r10
+34A9 Noms_Clients(15|87R9)<integer> 36r11
+36a4 Noms{34A9} 147m7 155r32 162r36
+41r4 Generador{10|47R9} 68r33 100r30 138r10
+43f4 Float_Random{float} 68m10 77r25 100m7 101r22
+47w4 Monitor{20|23W19} 112r7 114r7 141r4
+50T14 Client 52l8 52e14 55b14 123l8 123t14 126r50 128r56
+51Y11 Start 51>18 51>52 91b14 97l11 97t16 155s26 162s30
+51r18 Nom_Client{15|87R9} 94r19
+51e52 Tipus_Client{20|14E10} 95r19
+58r7 Nom{15|87R9} 71r29 73r34 81r29 83r34 94m10 105r39 107r44 112r34 114r27
+. 118r30 120r35
+59e7 Tipus{20|14E10} 70r13 80r13 95m10 104r10 112r27 117r10
+62i7 Salo{natural} 71r82 73r87 112m38 114r31
+64U17 Dinar 64b17 86l11 86t16 113s7
+91r21 Nom_Client{15|87R9}
+91e55 Tipus_Client{20|14E10}
+126A9 Array_Fumadors(50T14)<integer> 131r21
+128A9 Array_No_Fumadors(50T14)<integer> 133r24
+131a4 Fumadors_Array{126A9} 155r6
+133a4 No_Fumadors_Array{128A9} 162r7
+146i8 I{integer} 147r12
+153i8 Idx{integer} 155r21 155r37
+160i8 Idx{integer} 162r25 162r41
 X 26 system.ads
 67M9*Address
 X 35 s-memory.ads
