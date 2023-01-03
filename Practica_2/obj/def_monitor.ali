@@ -20,7 +20,7 @@ RV NO_IMPLEMENTATION_ATTRIBUTES
 RV NO_IMPLEMENTATION_PRAGMAS
 RV MAX_PROTECTED_ENTRIES=3
 
-U def_monitor%b		def_monitor.adb		1f3d83b4 NE OO PK IL
+U def_monitor%b		def_monitor.adb		dcfdf341 NE OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.strings%s		a-string.ads		a-string.ali
@@ -39,7 +39,7 @@ Z system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
 Z system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
 W text_io%s		text_io.ads		text_io.ali
 
-U def_monitor%s		def_monitor.ads		f4617ea8 EE NE OO PK IL
+U def_monitor%s		def_monitor.ads		2b8d17ec EE NE OO PK IL
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 W ada.strings%s		a-string.ads		a-string.ali
@@ -64,8 +64,8 @@ D a-suteio.ads		20200228061810 26d8e9aa ada.strings.unbounded.text_io%s
 D a-tags.ads		20200228061810 edddc8f0 ada.tags%s
 D a-textio.ads		20200228061810 aef4d56d ada.text_io%s
 D a-unccon.ads		20200228061810 0e9b276f ada.unchecked_conversion%s
-D def_monitor.ads	20221212200748 e2370ef3 def_monitor%s
-D def_monitor.adb	20221212200748 ec36dc2e def_monitor%b
+D def_monitor.ads	20230102202010 3ddb67b7 def_monitor%s
+D def_monitor.adb	20230102202010 f01ac59f def_monitor%b
 D interfac.ads		20200228061810 5ab55268 interfaces%s
 D i-c.ads		20200228061810 c624fa43 interfaces.c%s
 D i-cstrin.ads		20200228061810 341d0ddf interfaces.c.strings%s
@@ -105,69 +105,71 @@ D s-wchcon.ads		20200228061810 1b7d22d2 system.wch_con%s
 D s-win32.ads		20200228061810 15ac53fb system.win32%s
 D text_io.ads		20200228061810 21b2c898 text_io%s
 G a e
-G c Z s b [inicializar_maitre def_monitor__maitre 18 17 none]
-G c Z s b [entrar_salo def_monitor__maitre 20 13 none]
-G c Z s b [sortir_salo def_monitor__maitre 22 17 none]
-G c Z s b [hi_ha_lloc def_monitor__maitre 24 16 none]
-G c Z s b [maitre__inicializar_maitreN def_monitor 18 7 none]
-G c Z s b [maitre__inicializar_maitreP def_monitor 18 7 none]
-G c Z s b [maitre__sortir_saloN def_monitor 22 7 none]
-G c Z s b [maitre__sortir_saloP def_monitor 22 7 none]
-G c Z s b [maitre__hi_ha_llocN def_monitor 24 7 none]
-G c Z s b [maitre__hi_ha_llocP def_monitor 24 7 none]
-G c Z s s [Tarray_salonsBIP def_monitor 11 5 none]
-G c Z s s [Tarray_tipusBIP def_monitor 13 5 none]
-G c Z s s [F9sIP def_monitor 16 4 none]
-G c Z s s [maitreVDI def_monitor 16 4 none]
-G c Z s s [maitreVDF def_monitor 16 4 none]
-G c Z s s [maitreVIP def_monitor 16 4 none]
-G c Z s s [P7sIP def_monitor 20 7 none]
+G c Z s b [inicializar_maitre def_monitor__maitre 25 17 none]
+G c Z s b [entrar_salo def_monitor__maitre 27 13 none]
+G c Z s b [sortir_salo def_monitor__maitre 29 17 none]
+G c Z s b [hi_ha_lloc def_monitor__maitre 31 16 none]
+G c Z s b [maitre__inicializar_maitreN def_monitor 25 7 none]
+G c Z s b [maitre__inicializar_maitreP def_monitor 25 7 none]
+G c Z s b [maitre__sortir_saloN def_monitor 29 7 none]
+G c Z s b [maitre__sortir_saloP def_monitor 29 7 none]
+G c Z s b [maitre__hi_ha_llocN def_monitor 31 7 none]
+G c Z s b [maitre__hi_ha_llocP def_monitor 31 7 none]
+G c Z s s [Tarray_salonsBIP def_monitor 17 5 none]
+G c Z s s [Tarray_tipusBIP def_monitor 20 5 none]
+G c Z s s [F9sIP def_monitor 23 4 none]
+G c Z s s [maitreVDI def_monitor 23 4 none]
+G c Z s s [maitreVDF def_monitor 23 4 none]
+G c Z s s [maitreVIP def_monitor 23 4 none]
+G c Z s s [P7sIP def_monitor 27 7 none]
 X 1 ada.ads
 16K9*Ada 20e8 15|2r6 2r44 16|2r6 2r44 3r6 3r44
 X 8 a-string.ads
 16K13*Strings 35e16 15|2r10 2r48 16|2r10 2r48 3r10 3r48
 X 10 a-strunb.ads
 82K21*Unbounded 758e26 15|2w18 2r56 16|2w18 2r56 3r18 3r56
-87R9*Unbounded_String<5|43R9> 741e14 15|20r45 22r37 16|54r65 80r38
-159V14*"&"{87R9} 16|69s46 69s81 69s92 69s112 71s46 71s84 71s95 71s114 97s46
-. 97s78 97s89 97s109 97s134 97s146 99s46 99s78 99s89 99s109 99s134 99s146
-167V14*"&"{87R9} 16|69s40 71s40 97s40 99s40
+87R9*Unbounded_String<5|43R9> 741e14 15|27r45 29r37 16|65r65 94r38
+159V14*"&"{87R9} 16|83s46 83s81 83s92 83s112 85s46 85s84 85s95 85s115 113s46
+. 113s78 113s89 113s109 113s134 113s146 115s46 115s78 115s89 115s109 115s134
+. 115s146
+167V14*"&"{87R9} 16|83s40 85s40 113s40 115s40
 X 11 a-suteio.ads
 39K31*Text_IO 61e34 16|3w28 3r66
-55U14*Put_Line 16|69s14 71s14 97s14 99s14
+55U14*Put_Line 16|83s14 85s14 113s14 115s14
 X 13 a-textio.ads
-508U14*Put_Line 16|22s10 24s10
+508U14*Put_Line 16|25s10 27s10
 X 15 def_monitor.ads
-4K9*def_monitor 34l5 34e16 16|6b14 107l5 107t16
-6i5*N_TAULES{natural} 16|16r30 24r85 60r32 90r35
-7i5*N_SALONS{natural} 11r36 13r35 16|24r41
-9E10*Tipus_Salo 9e48 13r48 20r25 24r44 16|30r44 54r45 82r24
-9n25*FUMADOR{9E10} 16|68r29 96r28
-9n33*NO_FUMADOR{9E10}
-9n44*CAP{9E10} 16|18r29 36r62 92r33
-11A10*Array_Salons(natural)<integer> 28r22
-13A10*Array_Tipus(9E10)<integer> 30r21
-16W19*Maitre 28E7 32l8 32e14 16|8b19 105l8 105t14
-18U17 Inicializar_Maitre 16|10b17 26l11 26t29
-20Y13 Entrar_Salo 20>37 20<63 16|54b13 75l11 75t22
-20r37 Nom{10|87R9} 16|69r42 71r42
-20i63 Salo{natural} 16|58m10 60r26 62r25 66r23 66r44 69r83 69r127 71r86 71r129
-22U17 Sortir_Salo 22>29 22>55 16|80b17 102l11 102t22
-22r29 Nom{10|87R9} 16|80b30 97r42 99r42
-22i55 Salo{natural} 16|80b56 86r37 88r23 88r45 90r27 92r25 97r80 97r124 97r161
-. 99r80 99r124 99r161
-24V16 Hi_Ha_LLoc{natural} 24>27 16|30b16 50l11 50t21 54s109 58s17
-24e27 Tipus_Client{9E10} 16|30b27 36r31
-28a7 Salons_Array{11A10} 16|14r19 16r13 34r20 38r19 60r13 66r10 66r31 69r114
-. 71r116 88r10 88r32 90r14 97r111 99r111
-30a7 Tipus_Array{13A10} 16|18r13 36r16 36r47 62r13 86r25 92r13 97r149 99r149
+4K9*def_monitor 41l5 41e16 16|6b14 123l5 123t16
+8i5*N_SALONS{natural} 17r36 20r35 16|27r41
+11i5*N_TAULES{natural} 16|18r30 27r85 73r32 106r35
+14E10*Tipus_Salo 14e49 20r48 27r25 31r44 16|36r44 65r45 96r24
+14n25*FUMADOR{14E10} 16|82r29 112r28
+14n33*NO_FUMADOR{14E10}
+14n45*CAP{14E10} 16|21r29 44r62 108r33
+17A10*Array_Salons(natural)<integer> 35r22
+20A10*Array_Tipus(14E10)<integer> 37r21
+23W19*Maitre 35E7 39l8 39e14 16|8b19 121l8 121t14
+25U17 Inicializar_Maitre 16|11b17 29l11 29t29
+27Y13 Entrar_Salo 27>37 27<63 16|65b13 88l11 88t22
+27r37 Nom{10|87R9} 16|83r42 85r42
+27i63 Salo{natural} 16|70m10 73r26 75r25 80r23 80r44 83r83 83r127 85r86 85r130
+29U17 Sortir_Salo 29>29 29>55 16|94b17 118l11 118t22
+29r29 Nom{10|87R9} 16|94b30 113r42 115r42
+29i55 Salo{natural} 16|94b56 100r37 103r23 103r45 106r27 108r25 113r80 113r124
+. 113r161 115r80 115r124 115r161
+31V16 Hi_Ha_LLoc{natural} 31>27 16|36b16 58l11 58t21 65s109 70s17
+31e27 Tipus_Client{14E10} 16|36b27 44r31
+35a7 Salons_Array{17A10} 16|15r19 18r13 41r20 46r19 73r13 80r10 80r31 83r114
+. 85r117 103r10 103r32 106r14 113r111 115r111
+37a7 Tipus_Array{20A10} 16|21r13 44r16 44r47 75r13 100r25 108r13 113r149
+. 115r149
 X 16 def_monitor.adb
-14i14 i{integer} 16r26 18r25
-34i15 i{integer} 36r28 36r59 38r32 40r26
-54e29 Tipus_Client
-54r57 Nom{10|87R9}
-54i83 Salo{natural}
-82e10 Tipus_Client{15|9E10} 86m10 96r13
+15i14 i{integer} 18r26 21r25
+41i15 i{integer} 44r28 44r59 46r32 48r26
+65e29 Tipus_Client
+65r57 Nom{10|87R9}
+65i83 Salo{natural}
+96e10 Tipus_Client{15|14E10} 100m10 112r13
 X 38 s-stausa.ads
 208U14*Initialize 209i<c,__gnat_stack_usage_initialize>22
 273U14*Output_Results 277i<c,__gnat_stack_usage_output_results>22
