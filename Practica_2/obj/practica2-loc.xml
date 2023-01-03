@@ -1,34 +1,10 @@
 <?xml version="1.0"?>
 <Locations >
   <Project>
-    <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_file>
-    <file_marker column=" 50" line=" 14" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\def_monitor.ads</vfs_file>
-    </file_marker>
-    <file_marker column=" 5" line=" 90" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\def_monitor.adb</vfs_file>
-    </file_marker>
-    <file_marker column=" 1" line=" 1" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\def_monitor.ads</vfs_file>
-    </file_marker>
-    <file_marker column=" 1" line=" 1" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\def_monitor.adb</vfs_file>
-    </file_marker>
-    <file_marker column=" 1" line=" 1" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\def_monitor.ads</vfs_file>
-    </file_marker>
-    <file_marker column=" 1" line=" 1" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\main.adb</vfs_file>
-    </file_marker>
+    <vfs_file>C:\Users\marcm\Desktop\Practica_2\practica2.gpr</vfs_file>
     <file_marker current="true" column=" 1" line=" 1" >
-      <vfs_project>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\practica2.gpr</vfs_project>
-      <vfs_file>C:\Users\marcm\Desktop\Tercer\ProgramacioConcurrent\ProgramacioConcurrent\Practica_2\src\def_monitor.ads</vfs_file>
+      <vfs_project>C:\Users\marcm\Desktop\Practica_2\practica2.gpr</vfs_project>
+      <vfs_file>C:\Users\marcm\Desktop\Practica_2\src\main.adb</vfs_file>
     </file_marker>
   </Project>
   <Project >

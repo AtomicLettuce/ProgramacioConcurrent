@@ -1,12 +1,17 @@
+/*
+Autors : 
+        Marc Melià Flexas
+        Xavier Vives Marcus
+
+Vídeo:
+        https://www.youtube.com/watch?v=wPlCwHHk-AA&ab_channel=XavierVives
+*/
+
 package practica1;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
-/**
- *
- * @author xvive
- */
 public class Practica1 {
 
     final String NOMS[] = {"Joaquim", "Goku", "Alicia", "Victòria", "Xisca", "Biel", "Xavier", "Elena", "Magdalena", "Marc", "Miquel", "Toni",
@@ -17,17 +22,24 @@ public class Practica1 {
     final int N_ESTUDIANTS = 15;
     final int N_RONDES = 3;
     final int CAPACITAT_SALA = 5;
+    
+    // Variable comptador que guarda la quantitat de persones que hi ha a la sala
     static int capacitat = 0;
+    
+    // Semàfor que regula l'accés a la sala
     static Semaphore sala = new Semaphore(1);
+    // Semàfor que regula l'accés DEL DIRECTOR a la sala
     static Semaphore director = new Semaphore(1);
+    // Semàfor que serveix per fer que els alumnes esperin mentre el director està desmontant una festa
     static Semaphore director_dedins = new Semaphore(1);
 
     static enum Estat {
         NO_HI_ES, ESPERANT, DEDINS
     };
-
+    // Estat del director
     Estat estat_director = Estat.NO_HI_ES;
 
+    // Constants per donar color al text
     public static final String ANSI_COLOR_RED = "\033[1;31m";
     public static final String ANSI_COLOR_CYAN = "\033[1;36m";
     public static final String ANSI_COLOR_GREEN = "\033[1;32m";
@@ -35,12 +47,14 @@ public class Practica1 {
     public static final String ANSI_COLOR_BLUE = "\033[1;34m";
     public static final String ANSI_COLOR_PURPLE = "\033[1;35m";
     public static final String ANSI_COLOR_WHITE = "\033[1;37m";
-
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String RANIBOW_FESTA = ANSI_COLOR_RED + "F" + ANSI_COLOR_GREEN + "E" + ANSI_COLOR_YELLOW + "S" + ANSI_COLOR_BLUE + "T" + ANSI_COLOR_PURPLE + "A" + ANSI_COLOR_CYAN + "!" + ANSI_COLOR_WHITE + "!" + ANSI_COLOR_RED + "!" + ANSI_COLOR_GREEN + "!" + ANSI_COLOR_YELLOW + "!" + ANSI_RESET;
 
+    
+    
+    
+    
     private class director extends Thread {
-
         @Override
         public void run() {
             try {
@@ -54,10 +68,11 @@ public class Practica1 {
                     // Cas en el que no hi ha nnigú a la sala
                     if (capacitat == 0) {
                         estat_director = Estat.DEDINS;
-                        System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                        System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                     } else {
                         // Cas en el que hi ha una quantitat acceptable d'alumnes a la sala
                         if (capacitat <= CAPACITAT_SALA) {
+                            estat_director=Estat.ESPERANT;
                             System.out.println("\tEl Director està esperant per entrar. No molesta als que estudien");
                         }
                         // Espera per poder entrar
@@ -67,26 +82,25 @@ public class Practica1 {
                         // Cas en el que s'ha buidat la sala
                         if (capacitat == 0) {
                             estat_director = Estat.DEDINS;
-                            System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                         } // Cas en el que hi ha una FESTA
                         else {
                             estat_director = Estat.DEDINS;
-                            System.out.println(ANSI_COLOR_RED + "\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!" + ANSI_RESET);
+                            System.out.println("\tEl Director està dins la sala d'estudi: S'HA ACABAT LA FESTA!");
                             // Fa que nigú pugui entrar fins que no se buidi
                             director_dedins.acquire();
                             sala.release();
                             // Espera fins que se buidi
                             director.acquire();
-                            System.out.println(ANSI_COLOR_RED + "\tEl Director veu que no hi ha ningú a la sala d'estudis" + ANSI_RESET);
+                            System.out.println("\tEl Director veu que no hi ha ningú a la sala d'estudis");
                             director.release();
                             sala.acquire();
-                            estat_director = Estat.NO_HI_ES;
-                            sala.release();
                             director_dedins.release();
                         }
                     }
+                    estat_director=Estat.NO_HI_ES;
                     sala.release();
-                    System.out.println(ANSI_COLOR_CYAN + "\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES + ANSI_RESET);
+                    System.out.println("\tEl Director acaba la ronda " + (i + 1) + " de " + N_RONDES);
 
                 }
 
@@ -104,7 +118,6 @@ public class Practica1 {
             this.nom = nom;
 
         }
-
         @Override
         public void run() {
             try {
@@ -140,8 +153,10 @@ public class Practica1 {
                 System.out.println(nom + " surt de la sala d'estudi, nombre estudiants: " + capacitat);
                 if (capacitat == 0) {
                     // Si estat_director == DEDINS o estat_director == ESPERANT
-                    if (!estat_director.equals(Estat.NO_HI_ES)) {
+                    if (estat_director.equals(Estat.DEDINS)) {
                         System.out.println(nom + " ADÉU Senyor Director, pot entrar si vol, no hi ha nigú");
+                    }else if(estat_director.equals(Estat.ESPERANT)){
+                        System.out.println(nom+"ADÉU Senyor Director, pot entrar si vol, no hi ha nigú");
                     }
                     director.release();
                 }
@@ -155,10 +170,12 @@ public class Practica1 {
 
     public void main() throws InterruptedException {
         Thread threads[] = new Thread[N_ESTUDIANTS + 1];
+        // Cream fils estudiants
         for (int i = 0; i < N_ESTUDIANTS; i++) {
             threads[i] = new estudiant(NOMS[i]);
             threads[i].start();
         }
+        // Cream fil director
         threads[N_ESTUDIANTS] = new director();
         threads[N_ESTUDIANTS].start();
         for (int i = 0; i < N_ESTUDIANTS; i++) {
